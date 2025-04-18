@@ -14,7 +14,7 @@ let allMainLevels = [
 ];
 
 // 5 of each in allMainLevels, shuffled
-let numOfEachCondition = 10;
+let numOfEachCondition = 8;
 let allLevels = [];
 for (let i = 0; i < numOfEachCondition; i++) {
 	allLevels.push(...allMainLevels);
