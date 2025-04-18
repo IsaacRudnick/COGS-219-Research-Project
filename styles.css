@@ -1,0 +1,429 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-image: url("imgs/grass.jpg");
+	background-size: cover;
+	background-position: center;
+	font-family: Arial, sans-serif;
+	overflow: hidden;
+}
+
+.game-container {
+	width: 600px;
+	height: 100vh;
+	background-color: white;
+	border: 2px solid #333;
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+	clip-path: inset(0);
+	transform: translate3d(0, 0, 0);
+	will-change: transform;
+}
+
+.game-info {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 10;
+	font-size: 1.2em;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 5px 10px;
+	border-radius: 5px;
+	display: flex;
+	gap: 15px;
+}
+
+.game-area {
+	display: flex;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	transform: translate3d(0, 0, 0);
+	will-change: transform;
+}
+
+.lane {
+	flex: 1;
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+	transform: translate3d(0, 0, 0);
+	will-change: transform;
+	background: linear-gradient(to right, #2196f3 5%, #8b4513 5% 95%, #2196f3 95%);
+}
+
+.lane:last-child {
+	border-right: none;
+}
+
+.player {
+	width: 80px;
+	height: 80px;
+	/* Shift left 80 px and rotate 90 deg */
+	background-image: url("imgs/frog.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	bottom: 80px;
+	left: 50%;
+	transform: translate3d(-50%, 0, 0);
+	z-index: 5;
+	will-change: transform;
+}
+
+.player-flash {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: opacity 0.2s ease-out;
+	pointer-events: none;
+	border-radius: 50%;
+}
+
+.obstacle {
+	height: 40px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	will-change: transform;
+	transform: translate3d(-50%, 0, 0);
+}
+
+.water {
+	width: 100%;
+	height: 80px;
+	background-color: #2196f3;
+	border-radius: 4px;
+}
+
+.coin {
+	width: 40px;
+	height: 40px;
+	background-image: url("imgs/beetle.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.controls {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	font-size: 0.9em;
+	color: #666;
+}
+
+#game-over {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba(255, 255, 255, 0.95);
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+	display: none;
+}
+
+#restart-button {
+	margin-top: 15px;
+	padding: 8px 16px;
+	font-size: 1em;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#restart-button:hover {
+	background-color: #45a049;
+}
+
+.bonus {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	background-image: url("imgs/dragonfly.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	z-index: 10;
+	transition: opacity 0.1s linear, transform 0.1s linear;
+	transform: scale(1);
+}
+
+.bonus-line {
+	position: fixed;
+	height: 2px;
+	background-color: black;
+	z-index: 9;
+	animation: bonusLine 0.5s ease-out forwards;
+	transform-origin: left center;
+}
+
+@keyframes bonusLine {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.controls p {
+	margin: 5px 0;
+}
+
+.survey-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+}
+
+.survey-content {
+	background-color: white;
+	padding: 30px;
+	border-radius: 10px;
+	width: 90%;
+	max-width: 600px;
+	max-height: 90vh;
+	overflow-y: auto;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.survey-content h2 {
+	margin-bottom: 15px;
+	color: #333;
+	text-align: center;
+}
+
+.survey-content p {
+	margin-bottom: 20px;
+	color: #555;
+}
+
+.survey-question {
+	margin-bottom: 20px;
+}
+
+.survey-question label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: bold;
+	color: #444;
+}
+
+.survey-question input,
+.survey-question select,
+.survey-question textarea {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.survey-question textarea {
+	resize: vertical;
+}
+
+.radio-group {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 5px;
+}
+
+.radio-group label {
+	display: flex;
+	align-items: center;
+	font-weight: normal;
+	margin-bottom: 0;
+}
+
+.radio-group input[type="radio"] {
+	width: auto;
+	margin-right: 10px;
+}
+
+.survey-button {
+	display: block;
+	width: 100%;
+	padding: 12px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	margin-top: 20px;
+	transition: background-color 0.3s;
+}
+
+.survey-button:hover {
+	background-color: #45a049;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.required {
+	color: red;
+	margin-left: 3px;
+}
+
+.score-popup {
+	position: fixed;
+	font-size: 24px;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	z-index: 100;
+	opacity: 0;
+	transform: translateY(-20px);
+	transition: opacity 0.3s, transform 0.3s;
+	pointer-events: none;
+}
+
+.score-popup.positive {
+	color: #4caf50;
+}
+
+.score-popup.negative {
+	color: #f44336;
+}
+
+.score-popup.slipped {
+	color: #ff6b00;
+	font-weight: bold;
+	font-size: 22px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+	animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: translateX(-5px);
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		transform: translateX(5px);
+	}
+}
+
+.consent-text {
+	margin-bottom: 20px;
+	line-height: 1.5;
+}
+
+.consent-text h3 {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	color: #333;
+}
+
+.consent-text ul {
+	margin-left: 20px;
+	margin-bottom: 15px;
+}
+
+.consent-buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.survey-button.decline {
+	background-color: #f44336;
+}
+
+.survey-button.decline:hover {
+	background-color: #d32f2f;
+}
+
+/* Loading Indicator Styles */
+.loading-indicator {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.loading-content {
+	background-color: white;
+	padding: 2rem;
+	border-radius: 10px;
+	text-align: center;
+	max-width: 400px;
+	width: 90%;
+}
+
+.loading-content h2 {
+	margin-bottom: 1.5rem;
+	color: #333;
+}
+
+.progress-container {
+	width: 100%;
+	height: 20px;
+	background-color: #f0f0f0;
+	border-radius: 10px;
+	overflow: hidden;
+	margin-bottom: 1rem;
+}
+
+.progress-bar {
+	width: 0%;
+	height: 100%;
+	background-color: #4caf50;
+	transition: width 0.3s ease-in-out;
+}
+
+#loading-text {
+	color: #666;
+	margin: 0;
+}
