@@ -151,7 +151,9 @@ class Game {
 		// Fetch all level files in parallel
 		const fetchPromises = uniqueLevels.map(async (levelFile) => {
 			try {
-				const response = await fetch(levelFile);
+				const response = await fetch(
+					`https://raw.githubusercontent.com/IsaacRudnick/COGS-219-Research-Project/main/${levelFile}`
+				);
 				const text = await response.text();
 
 				// Store in cache
@@ -191,7 +193,9 @@ class Game {
 			} else {
 				// Fallback to fetching if not in cache
 				console.log(`Level ${levelFile} not in cache, fetching...`);
-				const response = await fetch(levelFile);
+				const response = await fetch(
+					`https://raw.githubusercontent.com/IsaacRudnick/COGS-219-Research-Project/main/${levelFile}`
+				);
 				text = await response.text();
 			}
 
