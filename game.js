@@ -413,7 +413,8 @@ class Game {
 	moveObstacles(deltaTime) {
 		const obstacles = document.querySelectorAll(".obstacle");
 		const moveSpeed = (deltaTime / 16) * 8; // Normalize speed based on 60fps
-		const containerHeight = window.innerHeight; // Full viewport height
+		const gameContainer = document.querySelector(".game-container");
+		const containerHeight = gameContainer.clientHeight;
 
 		obstacles.forEach((obstacle) => {
 			const currentTop = parseFloat(obstacle.style.top);
@@ -426,7 +427,7 @@ class Game {
 			}
 
 			// Check collision
-			const playerY = containerHeight - 100; // Player's Y position
+			const playerY = containerHeight - containerHeight * 0.15; // Player's Y position (15% from bottom)
 
 			// Check if obstacle is in the player's vertical range
 			if (currentTop > playerY - 40 && currentTop < playerY + 40) {
@@ -438,12 +439,11 @@ class Game {
 					const obstacleRect = obstacle.getBoundingClientRect();
 
 					// Calculate the center points
-					// Hardcode the player coordinates to avoid glitches
 					let playerCenterX = playerRect.left + playerRect.width / 2;
 					if (this.player.style.transform === "rotate(90deg)") {
 						playerCenterX -= 40;
 					}
-					const playerCenterY = 716;
+					const playerCenterY = playerRect.top + playerRect.height / 2;
 					const obstacleCenterX = obstacleRect.left + obstacleRect.width / 2;
 					const obstacleCenterY = obstacleRect.top + obstacleRect.height / 2;
 
@@ -452,14 +452,14 @@ class Game {
 					const dy = playerCenterY - obstacleCenterY;
 					const distance = Math.sqrt(dx * dx + dy * dy);
 
-					// Define collision thresholds based on obstacle type
+					// Define collision thresholds based on obstacle type and container size
 					let collisionThreshold;
 					if (obstacle.dataset.type === "Coin") {
 						// For coins, use a smaller collision radius since they're more precise
-						collisionThreshold = 30;
+						collisionThreshold = Math.min(30, containerHeight * 0.05); // 5% of container height or 30px, whichever is smaller
 					} else {
 						// For water, use a larger collision radius
-						collisionThreshold = 40;
+						collisionThreshold = Math.min(40, containerHeight * 0.067); // 6.7% of container height or 40px, whichever is smaller
 					}
 
 					// Check if the distance is less than the threshold
