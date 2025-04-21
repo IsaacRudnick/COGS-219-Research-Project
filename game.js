@@ -23,6 +23,30 @@ allLevels = allLevels.sort(() => Math.random() - 0.5);
 
 class Game {
 	constructor() {
+		// Make game instance available globally
+		window.game = this;
+
+		// Collect window size
+		const windowWidth = screen.availWidth;
+		const windowHeight = screen.availHeight;
+
+		// Store window dimensions for later use
+		this.windowDimensions = {
+			width: windowWidth,
+			height: windowHeight,
+		};
+
+		// Check if display is too small
+		if (windowWidth < 1500 || windowHeight < 900) {
+			alert(
+				`Your display (${windowWidth}px × ${windowHeight}px) is too small to play this game. The minimum required resolution is 1500×900 pixels.`
+			);
+			// Prevent the game from continuing
+			throw new Error("Display resolution too small");
+		}
+
+		// alert(`Window dimensions: ${windowWidth}px × ${windowHeight}px`);
+
 		this.score = 0;
 		this.currentLane = 2; // Start in middle lane
 		this.gameTimeDecimal = 0;
@@ -980,5 +1004,27 @@ class Game {
 
 // Start the game when the page loads
 window.addEventListener("load", () => {
+	// Check screen dimensions before starting the game
+	const screenWidth = screen.availWidth;
+	const screenHeight = screen.availHeight;
+
+	// If screen is too small, show alert and don't start the game
+	if (screenWidth < 1500 || screenHeight < 900) {
+		alert(
+			`Your screen resolution (${screenWidth}px × ${screenHeight}px) is too small to participate in this study. The minimum required resolution is 1500×900 pixels.`
+		);
+		// Create a message on the page instead of starting the game
+		document.body.innerHTML = `
+			<div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+				<h1>Screen Resolution Too Small</h1>
+				<p>Your screen resolution (${screenWidth}px × ${screenHeight}px) is too small to participate in this study.</p>
+				<p>The minimum required resolution is 1500×900 pixels.</p>
+
+			</div>
+		`;
+		return;
+	}
+
+	// If screen is large enough, start the game
 	new Game();
 });
