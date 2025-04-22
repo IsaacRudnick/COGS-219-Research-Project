@@ -109,8 +109,8 @@ class Survey {
 					device: device,
 					timestamp: new Date().toISOString(),
 					// Add window dimensions to the pre-game survey data
-					windowWidth: screen.availWidth,
-					windowHeight: screen.availHeight,
+					windowWidth: screen.innerWidth,
+					windowHeight: screen.innerHeight,
 				};
 
 				this.surveyContainer.classList.add("hidden");

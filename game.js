@@ -450,6 +450,10 @@ class Game {
 				return; // Skip collision check for removed obstacles
 			}
 
+			if (obstacle.dataset.collided === "true") {
+				return; // Skip collision check for already-hit obstacles
+			}
+
 			// Check collision
 			const playerY = containerHeight - containerHeight * 0.15; // Player's Y position (15% from bottom)
 
@@ -1005,8 +1009,8 @@ class Game {
 // Start the game when the page loads
 window.addEventListener("load", () => {
 	// Check screen dimensions before starting the game
-	const screenWidth = screen.availWidth;
-	const screenHeight = screen.availHeight;
+	const screenWidth = screen.innerWidth;
+	const screenHeight = screen.innerHeight;
 
 	// If screen is too small, show alert and don't start the game
 	if (screenWidth < 1500 || screenHeight < 900) {
