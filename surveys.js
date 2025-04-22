@@ -222,7 +222,7 @@ class Survey {
 			this.surveyContainer.innerHTML = `
                 <div class="survey-content">
                     <h2>Practice Complete</h2>
-                    <p>You have completed the practice trial. Please take a moment to review your experience.</p>
+                    <p>You have completed the practice trial. Please take a moment to consider your experience.</p>
                     <p>When you are ready to continue to the main trials, click the button below.</p>
                     
                     <button id="ready-button" class="survey-button">I'm Ready to Continue</button>
@@ -242,7 +242,7 @@ class Survey {
 			this.surveyContainer.innerHTML = `
                 <div class="survey-content">
                     <h2>Game Rules</h2>
-                    <p>In this game you will navigate between three lanes of logs as Mr. Frog, who hopes to make it to the frog gala in his fancy suit and hat. Your goal is to collect as many bugs as you can without falling in the water, or else Mr. Frog's suit and hat will get too wet. Use the right and left arrow keys to stay on the logs as they float downstream. The arrow keys will move your frog between the logs, either left or right. To collect bugs, you must let them fly into your mouth by putting yourself in the same lane as them. Each bug is worth (10) points, and falling into the water will make you lose you (100) points. 
+                    <p>In this game you will navigate between three lanes of logs as Mr. Frog, who hopes to make it to the frog gala in his fancy suit and hat. Your goal is to collect as many bugs as you can without falling in the water, or else Mr. Frog's suit and hat will get too wet. Use the right and left arrow keys to stay on the logs as they float downstream. The arrow keys will move your frog between the logs, either left or right. To collect bugs, you must let them fly into your mouth by putting yourself in the same lane as them. Each bug is worth (10) points, and falling into the water will make you lose (100) points. 
                     <br/>
                     Occasionally, a purple bonus bug will appear in either the middle or the left of the screen. They can be hard to spot. Bonus bugs are worth (50) points and can be collected by pressing the spacebar, but you will lose (50) points if you press the spacebar when there isn't a bonus bug present. Grab them before they disappear! 
                     <br/>

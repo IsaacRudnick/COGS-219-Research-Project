@@ -14,7 +14,7 @@ let allMainLevels = [
 ];
 
 // 5 of each in allMainLevels, shuffled
-let numOfEachCondition = 8;
+let numOfEachCondition = 15;
 let allLevels = [];
 for (let i = 0; i < numOfEachCondition; i++) {
 	allLevels.push(...allMainLevels);
@@ -705,6 +705,7 @@ class Game {
 	collectBonus() {
 		const bonus = this.activeBonus;
 		if (!bonus) return;
+		this.activeBonus = null;
 
 		// Log bonus collection with time since spawn
 		const timeSinceSpawn = this.gameTimeDecimal - this.activeBonusSpawnTime;
