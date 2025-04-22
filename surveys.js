@@ -431,6 +431,7 @@ class Survey {
                     <h2>Ready to Practice?</h2>
                     <p>You will now begin the practice trial. This is your chance to get familiar with the game mechanics before the main trials.</p>
                     <p>When you are ready to start practicing, click the button below.</p>
+
                     
                     <button id="practice-ready-button" class="survey-button">I'm Ready to Practice</button>
                 </div>

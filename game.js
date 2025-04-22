@@ -121,6 +121,10 @@ class Game {
 		await this.survey.showGameRulesSurvey();
 		console.log("Game rules survey completed");
 
+		// Demonstrate bonus bugs
+		await this.demonstrateBonusBugs();
+		console.log("Bonus bug demonstration completed");
+
 		// Show practice readiness survey
 		await this.survey.showPracticeReadinessSurvey();
 		console.log("Practice readiness survey completed");
@@ -143,6 +147,48 @@ class Game {
 		// Add event listeners
 		document.addEventListener("keydown", this.handleKeyPress);
 		// this.restartButton.addEventListener("click", this.restartGame);
+	}
+
+	async demonstrateBonusBugs() {
+		return new Promise((resolve) => {
+			// Create player for demonstration
+			this.createPlayer();
+
+			// Show message about upcoming bonus bug
+			const message = document.createElement("div");
+			message.style.position = "fixed";
+			message.style.top = "50%";
+			message.style.left = "50%";
+			message.style.transform = "translate(-50%, -50%)";
+			message.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+			message.style.color = "white";
+			message.style.padding = "20px";
+			message.style.borderRadius = "10px";
+			message.style.zIndex = "1000";
+			message.style.textAlign = "center";
+			message.style.fontSize = "24px";
+			message.textContent =
+				"You will now see a demonstration of the bonus bugs. One will spawn on the left, then another in the middle. In the game, you will press the spacebar to collect such bonuses.";
+			document.body.appendChild(message);
+
+			// Remove message and show first bonus bug after 3 seconds
+			setTimeout(() => {
+				message.remove();
+				this.createBonus({ position: "left" });
+
+				// Show second bonus bug after 4 seconds
+				setTimeout(() => {
+					this.createBonus({ position: "2" }); // Middle lane
+
+					// Resolve after second bonus bug disappears
+					setTimeout(() => {
+						// Remove player
+						this.player.remove();
+						resolve();
+					}, 5500);
+				}, 6000);
+			}, 5000);
+		});
 	}
 
 	// New method to pre-fetch all level files
