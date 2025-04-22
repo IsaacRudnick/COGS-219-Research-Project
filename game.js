@@ -185,8 +185,8 @@ class Game {
 						// Remove player
 						this.player.remove();
 						resolve();
-					}, 5500);
-				}, 6000);
+					}, 5000);
+				}, 5000);
 			}, 5000);
 		});
 	}
