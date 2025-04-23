@@ -954,7 +954,8 @@ class Game {
 		// Reset game state
 		this.gameTimeDecimal = 0;
 		this.timerElement.textContent = "0.0";
-		this.score = 0;
+		// Start players in real game with score of 10k to avoid negative scores demotivating them
+		this.score = 10000;
 		this.scoreElement.textContent = "0";
 		this.events = [];
 		this.userInputs = [];
