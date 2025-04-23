@@ -152,7 +152,7 @@ class Game {
 	async demonstrateBonusBugs() {
 		return new Promise((resolve) => {
 			// Create player for demonstration
-			this.createPlayer();
+			// this.createPlayer();
 
 			// Show message about upcoming bonus bug
 			const message = document.createElement("div");
@@ -168,7 +168,7 @@ class Game {
 			message.style.textAlign = "center";
 			message.style.fontSize = "24px";
 			message.textContent =
-				"You will now see a demonstration of the bonus bugs. One will spawn on the left, then another in the middle. In the game, you will press the spacebar to collect such bonuses.";
+				"You will now see a demonstration of the bonus bugs. One will spawn on the left, then another in the middle, just like they do in the real game";
 			document.body.appendChild(message);
 
 			// Remove message and show first bonus bug after 3 seconds
@@ -183,7 +183,7 @@ class Game {
 					// Resolve after second bonus bug disappears
 					setTimeout(() => {
 						// Remove player
-						this.player.remove();
+						// this.player.remove();
 						resolve();
 					}, 5000);
 				}, 5000);
@@ -459,8 +459,8 @@ class Game {
 				opacity += 0.025; // Larger increments for faster fade-in
 				bonus.style.opacity = opacity;
 			}
-			if (scale < 4) {
-				scale += 0.1; // Increment scale
+			if (scale < 8) {
+				scale += 0.15; // Increment scale
 				// Apply scale while preserving any existing transforms
 				if (event.position === "left" || event.position === "right") {
 					bonus.style.transform = `translateY(-50%) scale(${scale})`;
