@@ -39,7 +39,7 @@ class Game {
 		// Check if display is too small
 		if (windowWidth < 1400 || windowHeight < 900) {
 			alert(
-				`Your display (${windowWidth}px × ${windowHeight}px) is too small to play this game. The minimum required resolution is 1400×900 pixels.`
+				`Your display (${windowWidth}px × ${windowHeight}px) is too small to play this game. The minimum required resolution is 1400×900 pixels. Try fullscreening the window and refreshing.`
 			);
 			// Prevent the game from continuing
 			throw new Error("Display resolution too small");
@@ -1070,6 +1070,7 @@ window.addEventListener("load", () => {
 				<h1>Screen Resolution Too Small</h1>
 				<p>Your screen resolution (${screenWidth}px × ${screenHeight}px) is too small to participate in this study.</p>
 				<p>The minimum required resolution is 1400×900 pixels.</p>
+				<p>Try fullscreening the window and refreshing.</p>
 
 			</div>
 		`;
