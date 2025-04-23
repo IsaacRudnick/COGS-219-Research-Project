@@ -1002,7 +1002,6 @@ class Game {
 			"Thank you for participating. This was an experiment on attention when control was lost. Specifically, we wanted to see how people's attention would change when they lost control in high vs. low stakes situations."
 		);
 
-		// 	TODO: Change to proper link
 		window.location = "https://app.prolific.co/submissions/complete?cc=CFUDN4XZ";
 	}
 
