@@ -94,6 +94,7 @@ class Survey {
 				const gamingExperience = document.getElementById("gaming-experience").value;
 				const handedness = document.getElementById("handedness").value;
 				const device = document.getElementById("device").value;
+				const PROLIFIC_PID = new URLSearchParams(window.location.search).get("PROLIFIC_PID");
 
 				// Check if any field is empty
 				if (!age || !gender || !gamingExperience || !handedness || !device) {
@@ -111,6 +112,7 @@ class Survey {
 					// Add window dimensions to the pre-game survey data
 					windowWidth: screen.innerWidth,
 					windowHeight: screen.innerHeight,
+					PROLIFIC_PID: PROLIFIC_PID,
 				};
 
 				this.surveyContainer.classList.add("hidden");
