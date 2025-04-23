@@ -1003,7 +1003,7 @@ class Game {
 		);
 
 		// 	TODO: Change to proper link
-		window.location = "https://app.prolific.co/submissions/complete?cc=XXXXXXX";
+		window.location = "https://app.prolific.co/submissions/complete?cc=CFUDN4XZ";
 	}
 
 	showScorePopup(amount) {
